@@ -1,0 +1,7 @@
+requests
+beautifulSoup4
+pandas
+openpyxl
+xlsxwriter
+django
+django-crispy-forms==1.14.0
