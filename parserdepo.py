@@ -17,19 +17,15 @@ def parser(link):
         room_type = None
         hotel_price = None
         new_price = None
-        hotel_name_without_usd = None
-
         hotels_name = i.find_all('td', attrs={'class', 'link-hotel'})
         for instance in hotels_name:
             hotel_name = instance.text.strip()
-
         for instance in i:
             if "ROOM" in instance.text:
                 room_type = instance.text.strip()
             elif "STANDARD" in instance.text:
                 room_type = instance.text.strip()
         hotels_price = i.find_all('td', attrs={'class', 'td_price'})
-
         for instance in hotels_price:
             hotel_price = instance.text.strip()
             hotel_name_without_usd = int(float(hotel_price.strip('USD')))
@@ -39,14 +35,11 @@ def parser(link):
 
             discount_amount = is_what_percent_of(hotel_name_without_usd, 3)
             new_price = hotel_name_without_usd - discount_amount
-
         if hotel_name is not None:
             hotels_name_list.append(hotel_name)
             rooms_type_list.append(room_type)
-            # hotels_price_list.append(hotel_price)
-            hotels_price_list.append(hotel_name_without_usd)
+            hotels_price_list.append(hotel_price)
             new_prices_list.append(new_price)
-
     d = {'Hotel name': hotels_name_list,
          'Room type': rooms_type_list,
          'Hotel price': hotels_price_list,

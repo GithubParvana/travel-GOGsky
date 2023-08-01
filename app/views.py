@@ -13,6 +13,7 @@ def index(request):
 
         with open(f"{settings.BASE_DIR}/report.xlsx", "rb") as excel:
             data = excel.read()
+
             response = HttpResponse(data, content_type='application/ms-excel')
             response['Content-Disposition'] = 'attachment; filename="report.xlsx"'
             os.remove(f"{settings.BASE_DIR}/report.xlsx")
