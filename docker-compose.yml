@@ -10,7 +10,7 @@ services:
     volumes:
       - .:/code
     ports:
-      - "8000:8000"
+      - "8079:8000"
     # links:
     #   - postgres
 
