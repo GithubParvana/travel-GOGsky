@@ -16,6 +16,7 @@
 
 
 <body>
+    {% if not data %}
     <form method="post">
         {% csrf_token %}
         <div class="container">
@@ -25,16 +26,64 @@
                     <hr class="mt-4 mb-5">
                     <h4 class="mt-4" align="center">Mən sizin işinizi asanlaşdıracağam.</h4>
                     <hr class="mt-4 mb-5">
-
+                    <div style="">
                     {{ form.link|as_crispy_field }}
-
+                    {{ form.start_date|as_crispy_field }}
+                    {{ form.end_date|as_crispy_field }}
+                    {{ form.child|as_crispy_field }}
+                    {{ form.adult|as_crispy_field }}
+                    {{ form.nights_start|as_crispy_field }}
+                    {{ form.nights_end|as_crispy_field }}
+                    {{ form.cost_min|as_crispy_field }}
+                    {{ form.cost_max|as_crispy_field }}
+                </div>
                     <button type="submit" class="btn btn-outline-info"> <a href="{% url 'app:index' %}"> </a> Göndər</button>
 
                 </div>
             </div>
         </div>
     </form>
+    {% else %}
+    <select id="filter-input">
+        <option value="">Select a hotel name</option>
+        {% for name in options %}
+            <option value="{{ name }}">{{ name }}</option>
+        {% endfor %}
+    </select>
+    
 
+    {% endif %}
+
+    <div style="border-bottom: 1px solid black;height:200px"></div>
+    <div class="data-item">
+    {% for x in data %}
+    <h1>{{x.hotel}}</h1>
+    <p>{{x.roomtype}}</p>
+    <p>{{x.price}}</p>
+    {% endfor %}
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterInput = document.getElementById('filter-input');
+        const dataItems = document.querySelectorAll('.data-item');
+
+        filterInput.addEventListener('input', function() {
+            const filterValue = filterInput.value.toLowerCase();
+
+            dataItems.forEach(item => {
+                const hotelName = item.querySelector('h1').textContent.toLowerCase();
+                item.style.display = hotelName.includes(filterValue) ? 'block' : 'none';
+            });
+        });
+    });
+</script>
+
+    <style>
+        *{
+            margin-left:5%;
+        }
+    </style>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
