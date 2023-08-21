@@ -4,10 +4,6 @@ from django.shortcuts import render, HttpResponse
 from app.utils.parser import parser,selfieparser,kompasparser
 from django.conf import settings
 import time
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 def home(request):
    
@@ -98,45 +94,45 @@ def index(request):
     return render(request, 'index.html', context)
 
 
-def myAI(Date=None,Tour=None,Hotel=None):
+# def myAI(Date=None,Tour=None,Hotel=None):
     
-    driver = webdriver.Chrome()
-    driver.get("http://online.kompastour.kz/search_tour")
-    wait = WebDriverWait(driver, 10)
+#     driver = webdriver.Chrome()
+#     driver.get("http://online.kompastour.kz/search_tour")
+#     wait = WebDriverWait(driver, 10)
     
-    time.sleep(5)
+#     time.sleep(5)
     
-    close_button = driver.find_element(By.CLASS_NAME, "close")
-    close_button.click()
+#     close_button = driver.find_element(By.CLASS_NAME, "close")
+#     close_button.click()
     
-    time.sleep(5)
+#     time.sleep(5)
     
-    enddate_input = driver.find_element(By.CSS_SELECTOR, ".frm-input.date.CHECKIN_END")
-    startdate_input = driver.find_element(By.CSS_SELECTOR, ".frm-input.date.CHECKIN_BEG")
+#     enddate_input = driver.find_element(By.CSS_SELECTOR, ".frm-input.date.CHECKIN_END")
+#     startdate_input = driver.find_element(By.CSS_SELECTOR, ".frm-input.date.CHECKIN_BEG")
     
-    # enddate_input.clear()
-    # enddate_input.send_keys('10.08.2023')
+#     # enddate_input.clear()
+#     # enddate_input.send_keys('10.08.2023')
     
-    time.sleep(3)
+#     time.sleep(3)
     
-    # startdate_input.clear()
-    # startdate_input.send_keys('12.08.2023')
+#     # startdate_input.clear()
+#     # startdate_input.send_keys('12.08.2023')
     
-    time.sleep(5)
+#     time.sleep(5)
     
-    search_button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".load")))
-    search_button.click()
+#     search_button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".load")))
+#     search_button.click()
     
-    time.sleep(6)
+#     time.sleep(6)
     
-    link_element = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="samo-link-to-page"]/a[2]')))
-    link_element.click()
+#     link_element = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="samo-link-to-page"]/a[2]')))
+#     link_element.click()
     
-    time.sleep(3)
+#     time.sleep(3)
     
-    textarea_element = wait.until(EC.presence_of_element_located((By.ID, 'copyto')))
-    textarea_text = textarea_element.get_attribute("value")
+#     textarea_element = wait.until(EC.presence_of_element_located((By.ID, 'copyto')))
+#     textarea_text = textarea_element.get_attribute("value")
 
-    return textarea_text
+#     return textarea_text
 
 
