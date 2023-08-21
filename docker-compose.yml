@@ -12,5 +12,3 @@ services:
     ports:
       - "8079:8000"
 
-    depends_on:
-      - "postgres"
