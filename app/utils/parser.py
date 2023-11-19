@@ -326,6 +326,7 @@ def pegastour(data):
             hotel_name_without_usd = multiply_currency_value(hotel_price)
             
 
+
             
         nights = i.find_all('td', attrs={'class', 'duration-column'})
         if len(nights)>0:
