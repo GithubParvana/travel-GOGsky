@@ -1,7 +1,7 @@
 import os
 from . forms import LinkForm
 from django.shortcuts import render, HttpResponse
-from app.utils.parser import parser,selfieparser,kompasparser
+from app.utils.parser import parser,selfieparser,kompasparser, pegastour
 from django.conf import settings
 import time
 
@@ -24,9 +24,11 @@ def home(request):
         return render(request,'hotel-list-2.html', context)
     return render(request, 'hotel-list-2.html', context)
 
+
+
 def index(request):
     form = LinkForm(request.POST)
-    link = "https://summertour.az/search_tour?TOWNFROMINC=1930&STATEINC=9&CHECKIN_BEG=20230818&NIGHTS_FROM=7&CHECKIN_END=20230819&NIGHTS_TILL=7&ADULT=2&CURRENCY=2&CHILD=0&TOWNS_ANY=1&STARS_ANY=1&HOTELS_ANY=1&MEALS_ANY=1&PRICEPAGE=1&DOLOAD=1"
+    link = "https://summertour.az/search_tour?TOWNFROMINC=1930&STATEINC=9&CHECKIN_BEG={start_date}&NIGHTS_FROM=7&CHECKIN_END={end_date}&NIGHTS_TILL=7&ADULT=2&CURRENCY=2&CHILD=0&TOWNS_ANY=1&STARS_ANY=1&HOTELS_ANY=1&MEALS_ANY=1&PRICEPAGE=1&DOLOAD=1"
 
     if request.method == 'POST':
         
@@ -51,6 +53,16 @@ def index(request):
 
             a=3
             data = kompasparser(link)
+            print(data, '3333333333333333333333333')
+        
+        # added
+        elif 'pegast.az' in link:
+
+            a = 4
+            data = pegastour(data)
+            b = data
+            print(data, '1111111111111111111111111111111111111111')
+        # -----------------------
 
         if a==1:
             with open(f"{settings.BASE_DIR}/report.xlsx", "rb") as excel:
@@ -76,22 +88,54 @@ def index(request):
                 response['Content-Disposition'] = 'attachment; filename="report.xlsx"'
                 time.sleep(1)
 
+        # added
+        if a == 4:
+            with open(f"{settings.BASE_DIR}/pegasreport.xlsx", "rb") as excel:
+                data = excel.read()
+
+                response = HttpResponse(data, content_type='application/ms-excel')
+                response['Content-Disposition'] = 'attachment; filename="report.xlsx"'
+                time.sleep(1)
+        # ------------------------------------
 
         if a==1:
             os.remove(f"{settings.BASE_DIR}/report.xlsx")
         if a==2:
             os.remove(f"{settings.BASE_DIR}/selfietravlereport.xlsx")  
         if a==3:
-            os.remove(f"{settings.BASE_DIR}/kompasreport.xlsx")  
+            os.remove(f"{settings.BASE_DIR}/kompasreport.xlsx")
+
+        # added 
+        if a==4:
+            os.remove(f"{settings.BASE_DIR}/pegasreport.xlsx")
+        # -----------------------
+
         print(b)
         context = {'form': form,'data':b,'options':set(x['hotel'] for x in b)}
         
-
+        
         return render(request, 'index.html',context)
     
     context = {'form': form}
     
     return render(request, 'index.html', context)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # def myAI(Date=None,Tour=None,Hotel=None):
