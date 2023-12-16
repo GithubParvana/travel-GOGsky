@@ -311,13 +311,14 @@ def pegastour(data):
 
         for instance in i:
             print(instance)
-            if "Triple Room" in instance.text:
+            if "Double Room" in instance.text:
                 room_type = instance.text.strip()
+                # print('tripleeeeeeeeeeeeeeeeeeeeee')
             elif "Standard Room" in instance.text:
                 room_type = instance.text.strip()
-            elif "Deluxe Triple Room." in instance.text:
+            elif "Economy Room." in instance.text:
                 room_type = instance.text.strip()
-            elif "Family Room" in instance.text:
+            elif "Eco Room" in instance.text:
                 room_type = instance.text.strip()
         hotels_price = i.find_all('td', attrs={'class', 'price-column'})
 
@@ -349,3 +350,104 @@ def pegastour(data):
     df.to_excel('report.xlsx')
  
     return a
+
+
+
+
+
+
+# -----------------------------------------------------------
+
+def fstravel_parser(data):
+    
+    start_date = datetime.strptime(data.get('start_date'), '%Y-%m-%d').strftime('%Y%m%d')
+    end_date = datetime.strptime(data.get('end_date'), '%Y-%m-%d').strftime('%Y%m%d')
+    nights_start = str(data.get('nights_start'))
+    nights_end = str(data.get('nights_start'))
+    adult = str(data.get('adult'))
+    child = str(data.get('child'))
+    cost_min = str(data.get('cost_min'))
+    cost_max = str(data.get('cost_max'))
+    link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=25&CHILD={child}&TOWNS_ANY=1&STARS_ANY=1&HOTELS_ANY=1&MEALS_ANY=1&FREIGHT=1&FILTER=1&PRICEPAGE=1&DOLOAD=1'
+    print(link)
+    a = []
+    http_request = requests.get(link)
+    html = http_request.content
+    parsed_html = BeautifulSoup(html, 'html.parser')
+
+    z = parsed_html.find_all('tr', )
+
+    hotels_name_list = []
+    rooms_type_list = []
+    hotels_price_list = []
+    new_prices_list = []
+    
+    for i in z:
+   
+        hotel_name = None
+        room_type = None
+        hotel_price = None
+        new_price = None
+        hotel_name_without_usd = None
+
+        hotels_name = i.find_all('td', attrs={'class', 'link-hotel'})   
+
+
+        for instance in hotels_name:
+      
+            hotel_name = instance.text.strip()
+
+        for instance in i:
+            
+            if "ECO" in instance.text:
+                room_type = instance.text.strip()
+                print(instance.text)
+            elif "Standard" in instance.text:
+                print(instance.text)
+                room_type = instance.text.strip()
+            elif "STANDARD" in instance.text:
+                print(instance.text)
+                room_type = instance.text.strip()
+            elif "Superior" in instance.text:
+                print(instance.text)
+                room_type = instance.text.strip()
+            elif "Pool View" in instance.text:
+                print(instance.text)
+                room_type = instance.text.strip()
+                print(instance.text)
+            elif "Economy" in instance.text:
+                room_type = instance.text.strip()
+                print(instance.text)
+            elif "Room" in instance.text:
+                print(instance.text)
+                room_type = instance.text.strip()
+        hotels_price = i.find_all('td', attrs={'class', 'td_price'})
+
+        for instance in hotels_price:
+            hotel_price = instance.text.strip()
+            hotel_name_without_usd = multiply_currency_value(hotel_price)
+            
+
+            
+        nights = i.find_all('td', attrs={'class', 'c'})
+        if len(nights)>0:
+            night = process_number(nights[0].text.strip())
+        else:
+            night = 0
+        if hotel_name is not None:
+            hotels_name_list.append(hotel_name)
+            rooms_type_list.append(room_type)
+            # hotels_price_list.append(hotel_price)
+            hotels_price_list.append(hotel_name_without_usd)
+            new_prices_list.append(new_price)
+            a.append({'hotel':hotel_name,'roomtype':room_type,'price':hotel_name_without_usd,'discounted_price':new_price,'night':night})
+    d = {'Hotel name': hotels_name_list,
+         'Room type': rooms_type_list,
+         'Hotel price': hotels_price_list,
+         'Discounted price': new_prices_list}
+   
+    df = pd.DataFrame(data=d)
+    df.to_excel('report.xlsx')
+ 
+    return a
+
