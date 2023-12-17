@@ -39,7 +39,6 @@ def home(request):
 
 
 
-
 # def myAI(Date=None,Tour=None,Hotel=None):
     
 #     driver = webdriver.Chrome()
