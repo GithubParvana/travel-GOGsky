@@ -1,26 +1,27 @@
 import os
 from . forms import LinkForm
 from django.shortcuts import render, HttpResponse
-from app.utils.parser import parser,selfieparser,kompasparser, pegastour,fstravel_parser
+from app.utils.parser import parser,selfieparser,kompasparser, pegastour,fstravel_parser 
 from django.conf import settings
 import time
 
 def home(request):
-   
+    form = LinkForm
     context = {
-        'queryset':[]
-    }
+        'queryset':[],
+        'form':form
+    } 
     if request.method == 'POST':
         data = request.POST
         adult = data.get('adult')
    
-        queryset = parser(data)
-        queryset = pegastour(data)
-        queryset = queryset + selfieparser(data)
-        queryset = queryset + kompasparser(data)
-        queryset = queryset + fstravel_parser(data)
+        # queryset = parser(data)
+        # queryset = pegastour(data)
+        # queryset = queryset + selfieparser(data)
+        # queryset = queryset + kompasparser(data)
+        queryset = fstravel_parser(data)
        
-        
+        # print(queryset , "**********************************")
         for x in range(len(queryset)):
             queryset[x]['adult'] = adult
         sorted_data = sorted(queryset, key=lambda x: int(float(x['price'])))
@@ -28,8 +29,6 @@ def home(request):
         context['queryset'] = sorted_data
         return render(request,'hotel-list-2.html', context)
     return render(request, 'hotel-list-2.html', context)
-
-
 
 
 

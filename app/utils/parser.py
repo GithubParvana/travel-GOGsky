@@ -22,7 +22,7 @@ def multiply_currency_value(value_str):
     numeric_value = float(numeric_part)
 
     # Multiply the numeric value by the factor
-    multiplied_value = numeric_value * 1.7
+    multiplied_value = numeric_value 
 
     # Format the result back into the original format
     result_str = f"{multiplied_value:.2f}"
@@ -275,7 +275,7 @@ def kompasparser(data):
 
 
 def pegastour(data):
-    
+     
     start_date = datetime.strptime(data.get('start_date'), '%Y-%m-%d').strftime('%Y%m%d')
     end_date = datetime.strptime(data.get('end_date'), '%Y-%m-%d').strftime('%Y%m%d')
     nights_start = str(data.get('nights_start'))
@@ -359,75 +359,110 @@ def pegastour(data):
 # -----------------------------------------------------------
 
 def fstravel_parser(data):
+    tour = str(data.get('tour'))
+    qida = str(data.get('food'))
+    yer = str(data.get('yer'))
+    otel = str(data.get('hotel'))
+    unk = str(data.get('unkmown'))
+    star = str(data.get('star'))
+    print(star)
     
     start_date = datetime.strptime(data.get('start_date'), '%Y-%m-%d').strftime('%Y%m%d')
     end_date = datetime.strptime(data.get('end_date'), '%Y-%m-%d').strftime('%Y%m%d')
     nights_start = str(data.get('nights_start'))
-    nights_end = str(data.get('nights_start'))
+    nights_end = str(data.get('nights_end'))
     adult = str(data.get('adult'))
+    child =0
     child = str(data.get('child'))
+    child1 = str(data.get('child1age'))
+    child2 = str(data.get('child2age'))
+    child3 = str(data.get('child3age'))
     cost_min = str(data.get('cost_min'))
     cost_max = str(data.get('cost_max'))
-    link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=25&CHILD={child}&TOWNS_ANY=1&STARS_ANY=1&HOTELS_ANY=1&MEALS_ANY=1&FREIGHT=1&FILTER=1&PRICEPAGE=1&DOLOAD=1'
-    print(link)
+    if child:
+        child = child
+    else:
+        child=0
+    print(child)
+    if yer == 'Yes':
+        if tour:
+            #### Duz isleyir el vurma
+            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG=20240601&NIGHTS_FROM=7&CHECKIN_END=20240601&NIGHTS_TILL=14&ADULT=2&CURRENCY=2&COSTMIN=2995&CHILD=0&COSTMAX=10000&TOWNS_ANY=1&STARS_ANY=1&HOTELS_ANY=1&MEALS_ANY=1&ROOMS_ANY=1&FREIGHT=1&FILTER=1&PRICEPAGE=1&DOLOAD=1'    
+            if child:
+                 print("XYZ")
+                 link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG=20240601&NIGHTS_FROM=7&CHECKIN_END=20240601&NIGHTS_TILL=14&ADULT=2&Child={child}&CURRENCY=2&COSTMIN=2995&CHILD=0&COSTMAX=10000&TOWNS_ANY=1&STARS_ANY=1&HOTELS_ANY=1&MEALS_ANY=1&ROOMS_ANY=1&FREIGHT=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1' 
+        elif qida :
+            if otel:
+                print('y')
+                #Duz isleyir el vurma                 
+                link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&HOTELS={otel}&MEALS={qida}&ROOMS_ANY=1&FREIGHT=1&FILTER=1&PRICEPAGE=1&DOLOAD=1'
+            else:     
+                print('a')
+                #Duz isleyir el vurma 
+                link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&TOWNS=NaN%2C355153%2C693795%2C789189%2C388026%2C761669%2C386680%2C804429%2C351898%2C304681%2C304684%2C699188%2C704110%2C704101%2C666475%2C695955%2C398914%2C351935%2C439148%2C704079%2C304696%2C666478%2C351913%2C684831%2C400116%2C304702%2C400493%2C304705%2C304708%2C304711%2C304714%2C786956%2C372240%2C761676%2C778930%2C304717%2C786944%2C761679&STARS_ANY=1&HOTELS_ANY=1&MEALS={qida}&FREIGHT=1&FILTER=1&PRICEPAGE=1&DOLOAD=1'
+        else:
+            if otel:
+                if unk == '1' :
+                    #Duz isleyir el vurma
+                    link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&STARS_ANY=1&HOTELS={otel}&MEALS_ANY=1&ROOMS_ANY=1&FREIGHT=1&FILTER=1&PRICEPAGE=1&DOLOAD=1'
+            elif star :
+                 print("XXXXX")
+                 link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&STARS={star}&HOTELS_ANY=1&MEALS_ANY=1&ROOMS_ANY=1&FREIGHT=1&PRICEPAGE=1&DOLOAD=1'
+            else:
+                if child:
+                    print("dsss")
+                    link=f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&TOWNS_ANY=1&STARS_ANY=1&HOTELS_ANY=1&MEALS_ANY=1&FREIGHT=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1'                
+                else:
+                #Duz isleyir el vurma
+                    link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&TOWNS_ANY=1&STARS_ANY=1&HOTELS_ANY=1&MEALS_ANY=1&FREIGHT=1&FILTER=1&PRICEPAGE=1&DOLOAD=1'                
+
+    else:
+        if tour:
+            #Duz isleyir el vurma
+            print("Emil")
+            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&TOWNS_ANY=1&STARS_ANY=1&HOTELS_ANY=1&MEALS_ANY=1&ROOMS_ANY=1&&FILTER=1&PRICEPAGE=1&DOLOAD=1'
+        elif qida :
+            #Duz isleyir el vurma
+            print("Aytac")
+            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&TOWNS=NaN%2C355153%2C693795%2C789189%2C388026%2C761669%2C386680%2C804429%2C351898%2C304681%2C304684%2C699188%2C704110%2C704101%2C666475%2C695955%2C398914%2C351935%2C439148%2C704079%2C304696%2C666478%2C351913%2C684831%2C400116%2C304702%2C400493%2C304705%2C304708%2C304711%2C304714%2C786956%2C372240%2C761676%2C778930%2C304717%2C786944%2C761679&STARS_ANY=1&HOTELS_ANY=1&MEALS={qida}&FILTER=1&PRICEPAGE=1&DOLOAD=1'
+        else:
+            #Duz isleyir el vurma
+            print('k')
+            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&TOWNS=NaN%2C355153%2C693795%2C789189%2C388026%2C761669%2C386680%2C804429%2C351898%2C304681%2C304684%2C699188%2C704110%2C704101%2C666475%2C695955%2C398914%2C351935%2C439148%2C704079%2C304696%2C666478%2C351913%2C684831%2C400116%2C304702%2C400493%2C304705%2C304708%2C304711%2C304714%2C786956%2C372240%2C761676%2C778930%2C304717%2C786944%2C761679&STARS_ANY=1&HOTELS_ANY=1&MEALS_ANY=1&FILTER=1&PRICEPAGE=1&DOLOAD=1'
+
     a = []
+    print(link)
     http_request = requests.get(link)
     html = http_request.content
     parsed_html = BeautifulSoup(html, 'html.parser')
 
-    z = parsed_html.find_all('tr', )
-
+    z = parsed_html.find_all('tr',attrs={'class', 'price_info'} )
+    
     hotels_name_list = []
     rooms_type_list = []
+    qida_list  =[]
     hotels_price_list = []
     new_prices_list = []
+
     
     for i in z:
-   
         hotel_name = None
         room_type = None
         hotel_price = None
+        qida = None
         new_price = None
         hotel_name_without_usd = None
 
-        hotels_name = i.find_all('td', attrs={'class', 'link-hotel'})   
-
-
-        for instance in hotels_name:
-      
-            hotel_name = instance.text.strip()
-
-        for instance in i:
-            
-            if "ECO" in instance.text:
-                room_type = instance.text.strip()
-                print(instance.text)
-            elif "Standard" in instance.text:
-                print(instance.text)
-                room_type = instance.text.strip()
-            elif "STANDARD" in instance.text:
-                print(instance.text)
-                room_type = instance.text.strip()
-            elif "Superior" in instance.text:
-                print(instance.text)
-                room_type = instance.text.strip()
-            elif "Pool View" in instance.text:
-                print(instance.text)
-                room_type = instance.text.strip()
-                print(instance.text)
-            elif "Economy" in instance.text:
-                room_type = instance.text.strip()
-                print(instance.text)
-            elif "Room" in instance.text:
-                print(instance.text)
-                room_type = instance.text.strip()
+        hotels_name = i.find('td', attrs={'class', 'link-hotel'})           
+        hotel_name = hotels_name.text.strip()
+        td_elements = i.select('td:not([class])')
+        qida = td_elements[1].text 
+        room_type = td_elements[2].text          
         hotels_price = i.find_all('td', attrs={'class', 'td_price'})
 
         for instance in hotels_price:
             hotel_price = instance.text.strip()
             hotel_name_without_usd = multiply_currency_value(hotel_price)
-            
-
             
         nights = i.find_all('td', attrs={'class', 'c'})
         if len(nights)>0:
@@ -437,17 +472,19 @@ def fstravel_parser(data):
         if hotel_name is not None:
             hotels_name_list.append(hotel_name)
             rooms_type_list.append(room_type)
+            qida_list.append(qida)
             # hotels_price_list.append(hotel_price)
             hotels_price_list.append(hotel_name_without_usd)
             new_prices_list.append(new_price)
-            a.append({'hotel':hotel_name,'roomtype':room_type,'price':hotel_name_without_usd,'discounted_price':new_price,'night':night})
+            a.append({'hotel':hotel_name,'roomtype':room_type,'Qida' : qida, 'price':hotel_name_without_usd,'discounted_price':new_price,'night':night})
     d = {'Hotel name': hotels_name_list,
+          
          'Room type': rooms_type_list,
          'Hotel price': hotels_price_list,
          'Discounted price': new_prices_list}
    
-    df = pd.DataFrame(data=d)
-    df.to_excel('report.xlsx')
+    # df = pd.DataFrame(data=d)
+    # df.to_excel('report.xlsx')
  
     return a
 
@@ -456,3 +493,6 @@ def fstravel_parser(data):
 
 
 
+# def trying():
+#     data = requests.get("https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&CHECKIN_BEG=20240103&NIGHTS_FROM=7&CHECKIN_END=20240103&NIGHTS_TILL=7&ADULT=2&CURRENCY=25&CHILD=0&TOWNS=NaN%2C355153%2C693795%2C789189%2C388026%2C761669%2C386680%2C804429%2C351898%2C304681%2C304684%2C699188%2C704110%2C704101%2C666475%2C695955%2C398914%2C351935%2C439148%2C704079%2C304696%2C666478%2C351913%2C684831%2C400116%2C304702%2C400493%2C304705%2C304708%2C304711%2C304714%2C786956%2C372240%2C761676%2C778930%2C304717%2C786944%2C761679&STARS_ANY=1&HOTELS_ANY=1&MEALS_ANY=1&FREIGHT=1&FILTER=1&PRICEPAGE=1&DOLOAD=1")
+#     return data

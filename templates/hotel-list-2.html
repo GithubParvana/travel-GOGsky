@@ -88,18 +88,25 @@
               <div class="sidebar__item -no-border">
                 <form method="POST">
                   {% csrf_token %}
-                    <h5 class="text-18 fw-500 mb-10">Please enter...</h5>
+                     <h5 class="text-18 fw-500 mb-10">Please enter...</h5>
                     <div class="single-field relative d-flex items-center py-10">
-                      <select class="pl-50 border-light text-dark-1 h-50 rounded-8" id="filter-input">
+                      <select class="pl-50 border-light text-dark-1 h-50 rounded-8" name="choice" id="filter-input">
                         <option value="">Select location</option>
-                        <option value="">Antalya</option>
-                        <option value="">Bodrum</option>
+                        <option value="x">Antalya</option>
+                        <option value="y">Bodrum</option>
                         
-                    </select>
-                      
+                    </select>        
                     </div>
                     <div class="single-field relative d-flex items-center py-10">
-                      <input class="pl-50 border-light text-dark-1 h-50 rounded-8" type="date" name = 'start_date' placeholder="Enter start date">
+                      <select class="pl-50 border-light text-dark-1 h-50 rounded-8" name="tour" id="filter-input">
+                        <option value="">Select Tour (optional)</option>
+                        <option value="21180">Baku Antalya</option>
+                        <option value="21189">Premium Baki Antalya</option>
+                        
+                    </select>        
+                    </div>
+                    <div class="single-field relative d-flex items-center py-10">
+                      <input class="pl-50 border-light text-dark-1 h-50 rounded-8" type="date" name = 'start_date' value="{{first_name}} placeholder="Enter start date">
                       
                     </div>
                     <div class="single-field relative d-flex items-center py-10">
@@ -107,19 +114,25 @@
                       
                     </div>
                     <div class="single-field relative d-flex items-center py-10">
-                      <input class="pl-50 border-light text-dark-1 h-50 rounded-8" type="number" name = 'child' placeholder="Child">
-                      
+                      <input class="pl-50 border-light text-dark-1 h-50 rounded-8" type="number" name = 'child' placeholder="Child">                  
+                    </div>
+                    <div class="single-field relative d-flex items-center py-10">
+                      <input class="pl-50 border-light text-dark-1 h-50 rounded-8" type="number" name = 'child1age' placeholder="child1age">
+                    </div>
+                    <div class="single-field relative d-flex items-center py-10">
+                      <input class="pl-50 border-light text-dark-1 h-50 rounded-8" type="number" name = 'child2age' placeholder="child2age">
+                    </div>
+                    <div class="single-field relative d-flex items-center py-10">
+                      <input class="pl-50 border-light text-dark-1 h-50 rounded-8" type="number" name = 'child3age' placeholder="child3 age">
                     </div>
                     <div class="single-field relative d-flex items-center py-10">
                       <input class="pl-50 border-light text-dark-1 h-50 rounded-8" type="number" name = 'adult' placeholder="Adult">
-                      
                     </div>
-                   
                     <div class="single-field relative d-flex items-center py-10">
                       <input class="pl-50 border-light text-dark-1 h-50 rounded-8" type="number" name = 'cost_min'  placeholder="Minimum costing">
                       
                     </div>
-                    <div class="single-field relative d-flex items-center py-10">
+                    <div class="single-field relative d-flex items-center py-10"> 
                       <input class="pl-50 border-light text-dark-1 h-50 rounded-8" type="number" name = 'cost_max' placeholder="Maximum costing">
                       
                     </div>
@@ -131,10 +144,46 @@
                       <input class="pl-50 border-light text-dark-1 h-50 rounded-8" type="number" name = 'nights_end' placeholder="Nights end">
                       
                     </div>
-
                     <div class="single-field relative d-flex items-center py-10">
                       <input class="pl-50 border-light text-dark-1 h-50 rounded-8" type="text" name = 'town' placeholder="Town">
-                      
+                    </div> 
+                    <div class="single-field relative d-flex items-center py-10">
+                      <select class="pl-50 border-light text-dark-1 h-50 rounded-8" name="food" id="filter-input" placeholder="Select meal" >
+                        <option value="10004">AI</option>
+                        <option value="10001">BB</option>
+                        <option value="10003">FB</option>
+                        <option value="10002">HB</option>
+                        <option value="10005">RO</option>
+                        <option value="8">UAI</option>
+                        <option value="4">Po proqramme</option>
+                        <option value=""> all</option>
+                    </select>  
+                    </div>
+                    <div class="single-field relative d-flex items-center py-10">
+                      <select class="pl-50 border-light text-dark-1 h-50 rounded-8" name="yer" id="filter-input" placeholder="Teyyarede yer" >
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select> 
+                    </div>
+                    <div class="single-field relative d-flex items-center py-10">
+                      <select class="pl-50 border-light text-dark-1 h-50 rounded-8" name="hotel" id="filter-input" placeholder="Teyyarede yer" >
+                        <option value="847440">Der Inn Hotel Konyaalti BOUTIQUE</option>
+                        <option value="" > ASDAD</option>
+                        <option value="29677">Concorde De luxe Resort 5* </option>
+                    </select> 
+                    </div>
+                    <div class="single-field relative d-flex items-center py-10">
+                      <select class="pl-50 border-light text-dark-1 h-50 rounded-8" name="unkmown" id="filter-input" placeholder="Teyyarede yer" >
+                       
+                        <option value="1" > YES</option>
+                        <option value="0">NO </option>
+                    </select> 
+                    </div>
+                    <div class="single-field relative d-flex items-center py-10">
+                      <select class="pl-50 border-light text-dark-1 h-50 rounded-8" name="star" id="filter-input" placeholder="Teyyarede yer" >
+                        <option value="10005"> 5</option>
+                        <option value="10004">4</option>
+                    </select> 
                     </div>
                     <button type="Submit" style="border: 1px solid aqua;width:38%;background-color:aqua">Search</button>
                 </form>
@@ -841,7 +890,7 @@
 
                       <div class="row x-gap-10 y-gap-10 items-center pt-10">
                         <div class="col-auto">
-                          <p class="text-14">{{x.roomtype}}</p>
+                          <p class="text-14">{{x.Qida}}????{{x.roomtype}}</p>
                         </div>
 
 
@@ -864,7 +913,7 @@
                       <div class="">
                         <div class="text-14 text-light-1 mt-50 md:mt-20" style="margin-top: 0px !important;">{{x.night}} nights, {{x.adult}} adult</div>
                       
-                        <div class="text-22 lh-12 fw-600 mt-5">US${{x.price}}</div>
+                        <div class="text-22 lh-12 fw-600 mt-5">$ {{x.price}} </div>
                     
 
                         <a style="cursor: not-allowed;"  class="button -md -dark-1 bg-blue-1 text-white mt-24">
