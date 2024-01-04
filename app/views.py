@@ -6,19 +6,22 @@ from django.conf import settings
 import time
 
 def home(request):
+    form = LinkForm
    
     context = {
-        'queryset':[]
+        'queryset':[],
+        'form':form
     }
     if request.method == 'POST':
         data = request.POST
         adult = data.get('adult')
    
         queryset = parser(data)
-        queryset = pegastour(data)
-        queryset = queryset + selfieparser(data)
-        queryset = queryset + kompasparser(data)
-        queryset = queryset + fstravel_parser(data)
+        print(queryset, '11111111111')
+        # queryset = pegastour(data)
+        # queryset = queryset + selfieparser(data)
+        # queryset = queryset + kompasparser(data)
+        # queryset = queryset + fstravel_parser(data)
        
         
         for x in range(len(queryset)):

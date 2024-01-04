@@ -58,24 +58,32 @@ def parser(data):
     cost_min = str(data.get('cost_min'))
     cost_max = str(data.get('cost_max'))
     towns_any = str(data.get('towns_any'))
-    link = f'https://summertour.az/search_tour?TOWNFROMINC=1930&STATEINC=9&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&TOWNS_ANY={towns_any}&STARS_ANY=1&HOTELS_ANY=1&MEALS_ANY=1&FREIGHT=1&FILTER=1&PRICEPAGE=1&DOLOAD=1'
+    meal = str(data.get('meal'))
+
+    link = f'https://summertour.az/search_tour?TOWNFROMINC=1930&STATEINC=9&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&TOWNS_ANY={towns_any}&STARS_ANY=1&HOTELS_ANY=1&MEALS_ANY={meal}&FREIGHT=1&FILTER=1&PRICEPAGE=1&DOLOAD=1'
     print(link)
     a = []
+
     http_request = requests.get(link)
     html = http_request.content
     parsed_html = BeautifulSoup(html, 'html.parser')
     z = parsed_html.find_all('tr', )
+
     hotels_name_list = []
     rooms_type_list = []
     hotels_price_list = []
     new_prices_list = []
+    meal_list = []
+
     print(z,'z')
+
     for i in z:
         hotel_name = None
         room_type = None
         hotel_price = None
         new_price = None
         hotel_name_without_usd = None
+        meal_name = None
 
         hotels_name = i.find_all('td', attrs={'class', 'link-hotel'})
         for instance in hotels_name:
@@ -91,6 +99,26 @@ def parser(data):
                 room_type = instance.text.strip()
             elif "Standard" in instance.text:
                 room_type = instance.text.strip()
+
+
+        meals_name = i.find_all('td', )
+        for instance in meals_name:
+            meal_name = instance.text.strip()
+
+        for meal_instance in i:
+            print(meal_instance, 'instance')
+            if 'AI' in meal_instance.text:
+                meal_name = meal_instance.text.strip()
+            elif 'BB' in meal_instance.text:
+                meal_name = meal_instance.text.strip()
+            elif 'HB' in meal_instance.text:
+                meal_name = meal_instance.text.strip()
+            elif 'UAI' in meal_instance.text:
+                meal_name = meal_instance.text.strip()
+            elif 'ALL INCLUSIVE PLUS' in meal_instance.text:
+                meal_name = meal_instance.text.strip()
+
+
         hotels_price = i.find_all('td', attrs={'class', 'td_price'})
 
         for instance in hotels_price:
@@ -107,15 +135,19 @@ def parser(data):
             night = process_number(nights[0].text.strip())
         else:
             night = 0
+
         if hotel_name is not None:
             hotels_name_list.append(hotel_name)
             rooms_type_list.append(room_type)
             # hotels_price_list.append(hotel_price)
+            # new code
+            meal_list.append(meal_name)
             hotels_price_list.append(hotel_name_without_usd)
             new_prices_list.append(new_price)
-            a.append({'hotel':hotel_name,'roomtype':room_type,'price':hotel_name_without_usd,'discounted_price':new_price,'night':night})
+            a.append({'hotel':hotel_name,'roomtype':room_type,'meal':meal_name,'price':hotel_name_without_usd,'discounted_price':new_price,'night':night})
     d = {'Hotel name': hotels_name_list,
          'Room type': rooms_type_list,
+         'Meal': meal_list,
          'Hotel price': hotels_price_list,
          'Discounted price': new_prices_list}
    
