@@ -25,7 +25,7 @@
             </clipPath>
           </defs>
         </svg>
-        <span>+9941234567</span>
+        <a href="tel:+994506609694" class="ms-[8px] text-[12px]">+994506609694</a>
       </div>
       <div class="flex items-center mx-[130px]">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -41,7 +41,7 @@
             </clipPath>
           </defs>
         </svg>
-        <span>blahblahblah@gmail.com</span>
+        <a href="mailto:sv.elshad@gmail.com" class="ms-[8px] text-[12px]">sv.elshad@gmail.com</a>
       </div>
       <div class="flex items-center">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -59,7 +59,8 @@
             </clipPath>
           </defs>
         </svg>
-        <span>Azerbaijan / Baku </span>
+        <a href="https://www.google.com/maps/place/Bak%C4%B1/@40.3944755,49.6901503,42449m/data=!3m2!1e3!4b1!4m6!3m5!1s0x40307d6bd6211cf9:0x343f6b5e7ae56c6b!8m2!3d40.4092617!4d49.8670924!16zL20vMDFnZjU?hl=az&entry=ttu"
+          target="_blank" class="ms-[8px] text-[12px]">Azerbaijan / Baku</a>
       </div>
     </div>
 
@@ -119,7 +120,7 @@
   </div>
   <!-- Header part -->
 
-
+  <!-- Home part -->
   <div class="relative">
     <div class="h-[90vh] w-full flex items-center justify-center">
       <img src="../static/assets/Imgs/bg-home.png" alt="" class="h-full w-full">
@@ -164,8 +165,7 @@
         </svg>
       </div>
       <div class="mb-[55px] px-[108px]">
-        <span class="text-[40px] text-[#fff] font-extralight">Your Adventure Travel <br>Expert in <span
-            class="font-medium">GOGsky</span></span>
+        <span class="text-[40px] text-[#fff] font-extralight">Your Adventure Travel <br>Expert in <span class="font-medium">GOGsky</span></span>
       </div>
       <div class="px-[108px]">
         <div class="w-full px-[18px] py-[44px] bg-[#fff] shadow-lg">
@@ -233,26 +233,139 @@
               </div>
             </div>
             <div class="flex flex-col w-1/5">
-              <label for="guest" class="text-[14px] font-semibold">Guest</label>
-              <input type="text" id="guest" placeholder="Choose guests"
-                class="border-[1px] border-[#D5D4DC] p-[12px] rounded-[8px] mt-[8px] outline-none w-full">
+              <span class="text-[14px] font-semibold">Guest</span>
+              <div class="relative">
+                <div id="selectGuest" class="flex justify-between items-center p-[12px] border-[1px] border-[#D4D5DC] rounded-[8px] mt-[8px] cursor-pointer">
+                  <span id="guestText">Choose guest</span>
+                  <img src="../static/assets/svgs/Arrows.svg" alt="" >
+                </div>
+                <div id="listGuest" class="absolute left-0 top-[50px] w-full border-[1px] border-[#D5D4DC] rounded-[8px] bg-[#fff] flex px-[20px] py-[10px] justify-center invisible">
+                  <div class="w-1/2 flex flex-col items-center">
+                    <span>Adult</span>
+                    <div class="shadow-md px-[14px] flex items-center">
+                        <button  id="adultDecrease" class="text-[30px] font-medium">-</button>
+                        <span id="adultCount" class="mx-[8px] font-semibold mt-[5px] text-[18px]">0</span>
+                        <button id="adultIncrease" class="text-[30px] ">+</button>
+                    </div>
+                  </div>
+                  <div class="w-1/2 flex flex-col items-center">
+                    <span>Child</span>
+                    <div class="shadow-md px-[14px] flex items-center">
+                      <button  id="childDecrease" class="text-[30px] font-medium">-</button>
+                      <span id="childCount" class="mx-[8px] font-semibold mt-[5px] text-[18px]">0</span>
+                      <button id="childIncrease" class="text-[30px] ">+</button>
+                  </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="flex justify-between items-end w-full mt-[28px]">
             <div class="flex flex-col w-1/5">
-              <label for="ratings" class="text-[14px] font-semibold">Ratings</label>
-              <input type="text" id="ratings" placeholder="Choose rating"
-                class="border-[1px] border-[#D5D4DC] p-[12px] rounded-[8px] mt-[8px] outline-none">
+              <span class="text-[14px] font-semibold">Ratings</span>
+              <div class="relative">
+                <div id="selectRatings"
+                  class="flex justify-between items-center p-[12px] border-[1px] border-[#D5D4DC] rounded-[8px] mt-[8px] cursor-pointer">
+                  <span id="ratingsText">Choose ratings</span>
+                  <img src="../static/assets/svgs/Arrows.svg" alt="" >
+                </div>
+                <ul id="listRatings"
+                  class="absolute left-0 top-[50px] border-[1px] border-[#D5D4DC] w-full invisible bg-[#fff] rounded-[8px] py-[3px] h-[150px] overflow-auto">
+                  <li class="optionsRatings flex px-[12px] py-[6px] cursor-pointer">
+                    <span class="hidden">5</span>
+                    <img src="../static/assets/svgs/Star.svg" alt="">
+                    <img src="../static/assets/svgs/Star.svg" alt="" class="mx-[8px]">
+                    <img src="../static/assets/svgs/Star.svg" alt="">
+                    <img src="../static/assets/svgs/Star.svg" alt="" class="mx-[8px]">
+                    <img src="../static/assets/svgs/Star.svg" alt="">
+                  </li>
+                  <li class="optionsRatings flex px-[12px] py-[6px] cursor-pointer">
+                    <span class="hidden">4</span>
+                    <img src="../static/assets/svgs/Star.svg" alt="">
+                    <img src="../static/assets/svgs/Star.svg" alt="" class="mx-[8px]">
+                    <img src="../static/assets/svgs/Star.svg" alt="">
+                    <img src="../static/assets/svgs/Star.svg" alt="" class="ms-[8px]">
+                  </li>
+                  <li class="optionsRatings flex px-[12px] py-[6px] cursor-pointer">
+                    <span class="hidden">3</span>
+                    <img src="../static/assets/svgs/Star.svg" alt="">
+                    <img src="../static/assets/svgs/Star.svg" alt="" class="mx-[8px]">
+                    <img src="../static/assets/svgs/Star.svg" alt="">
+                  </li>
+                  <li class="optionsRatings flex px-[12px] py-[6px] cursor-pointer">
+                    <span class="hidden">2</span>
+                    <img src="../static/assets/svgs/Star.svg" alt="">
+                    <img src="../static/assets/svgs/Star.svg" alt="" class="ms-[8px]">
+                  </li>
+                  <li class="optionsRatings flex px-[12px] py-[6px] cursor-pointer">
+                    <span class="hidden">1</span>
+                    <img src="../static/assets/svgs/Star.svg" alt="">
+                  </li>
+                </ul>
+              </div>
             </div>
             <div class="flex flex-col w-1/5 mx-[10px]">
-              <label for="nutrition" class="text-[14px] font-semibold">Nutrition</label>
-              <input type="text" id="nutrition" placeholder="Choose nutrition"
-                class="border-[1px] border-[#D5D4DC] p-[12px] rounded-[8px] mt-[8px] outline-none">
+              <span class="text-[14px] font-semibold">Nutrition</span>
+              <div class="relative">
+                <div id="selectNutrition"
+                  class="flex justify-between items-center p-[12px] border-[1px] border-[#D5D4DC] rounded-[8px] mt-[8px] cursor-pointer">
+                  <span id="nutritionText">Choose nutrition</span>
+                  <img src="../static/assets/svgs/Arrows.svg" alt="">
+                </div>
+                <ul id="listNutritions"
+                  class="absolute left-0 top-[50px]  border-[1px] border-[#D5D4DC] w-full  bg-[#fff] rounded-[8px] py-[3px] h-[150px] overflow-auto invisible">
+                  <li class="optionsNutritions px-[12px] py-[6px] cursor-pointer">All</li>
+                  <li class="optionsNutritions px-[12px] py-[6px] cursor-pointer">Without food</li>
+                  <li class="optionsNutritions px-[12px] py-[6px] cursor-pointer">Breakfast</li>
+                  <li class="optionsNutritions px-[12px] py-[6px] cursor-pointer">All inclusive</li>
+                  <li class="optionsNutritions px-[12px] py-[6px] cursor-pointer">Full board</li>
+                  <li class="optionsNutritions px-[12px] py-[6px] cursor-pointer">Half board</li>
+                </ul>
+              </div>
             </div>
             <div class="flex flex-col w-1/5">
-              <label for="night" class="text-[14px] font-semibold">Night</label>
-              <input type="text" id="night" placeholder="Choose night"
-                class="border-[1px] border-[#D5D4DC] p-[12px] rounded-[8px] mt-[8px] outline-none">
+              <span class="text-[14px] font-semibold">Night</span>
+              <div class="relative">
+                <div id="selectNight"
+                  class="flex justify-between items-center p-[12px] border-[1px] border-[#D5D4DC] rounded-[8px] cursor-pointer mt-[8px]">
+                  <span id="nightText">Choose night</span>
+                  <img src="../static/assets/svgs/Arrows.svg" alt="">
+                </div>
+                <ul id="listNight"
+                  class="absolute left-0 top-[50px] border-[1px] border-[#D5D4DC] w-full  bg-[#fff] rounded-[8px] py-[3px] h-[150px] overflow-auto invisible">
+                  <li class="optionsNights py-[6px] px-[12px] cursor-pointer">I night</li>
+                  <li class="optionsNights py-[6px] px-[12px] cursor-pointer">II night</li>
+                  <li class="optionsNights py-[6px] px-[12px] cursor-pointer">III night</li>
+                  <li class="optionsNights py-[6px] px-[12px] cursor-pointer">IV night</li>
+                  <li class="optionsNights py-[6px] px-[12px] cursor-pointer">V night</li>
+                  <li class="optionsNights py-[6px] px-[12px] cursor-pointer">VI night</li>
+                  <li class="optionsNights py-[6px] px-[12px] cursor-pointer">VII night</li>
+                  <li class="optionsNights py-[6px] px-[12px] cursor-pointer">VIII night</li>
+                  <li class="optionsNights py-[6px] px-[12px] cursor-pointer">IX night</li>
+                  <li class="optionsNights py-[6px] px-[12px] cursor-pointer">X night</li>
+                  <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XI night</li>
+                  <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XII night</li>
+                  <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XIII night</li>
+                  <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XIV night</li>
+                  <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XV night</li>
+                  <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XVI night</li>
+                  <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XVII night</li>
+                  <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XVIII night</li>
+                  <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XIX night</li>
+                  <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XX night</li>
+                  <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XXI night</li>
+                  <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XXII night</li>
+                  <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XXIII night</li>
+                  <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XXIV night</li>
+                  <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XXV night</li>
+                  <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XXVI night</li>
+                  <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XXVII night</li>
+                  <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XXVIII night</li>
+                  <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XXIX night</li>
+                  <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XXX night</li>
+                  <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XXI night</li>
+                </ul>
+              </div>
             </div>
             <div class="w-2/5 flex justify-end">
               <a href="./searchResult.html" class="flex p-[12px] border-[2px] border-[#2141B7] rounded-[8px]">
@@ -270,8 +383,11 @@
       </div>
     </div>
 
+    <!-- Home part -->
 
-    <!-- Home Infomation -->
+
+
+    <script src="../static/assets/JS/home.js"></script>
 </body>
 
 </html>

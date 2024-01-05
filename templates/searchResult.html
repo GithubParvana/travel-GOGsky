@@ -26,7 +26,7 @@
             </clipPath>
           </defs>
         </svg>
-        <span>+9941234567</span>
+        <a href="tel:+994506609694" class="ms-[8px] text-[12px]">+994506609694</a>
       </div>
       <div class="flex items-center mx-[130px]">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -42,7 +42,7 @@
             </clipPath>
           </defs>
         </svg>
-        <span>blahblahblah@gmail.com</span>
+        <a href="mailto:sv.elshad@gmail.com" class="ms-[8px] text-[12px]">sv.elshad@gmail.com</a>
       </div>
       <div class="flex items-center">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -60,7 +60,8 @@
             </clipPath>
           </defs>
         </svg>
-        <span>Azerbaijan / Baku </span>
+        <a href="https://www.google.com/maps/place/Bak%C4%B1/@40.3944755,49.6901503,42449m/data=!3m2!1e3!4b1!4m6!3m5!1s0x40307d6bd6211cf9:0x343f6b5e7ae56c6b!8m2!3d40.4092617!4d49.8670924!16zL20vMDFnZjU?hl=az&entry=ttu"
+          target="_blank" class="ms-[8px] text-[12px]">Azerbaijan / Baku</a>
       </div>
     </div>
 
@@ -121,8 +122,9 @@
   <!-- Header Part -->
 
   <!-- Search Part -->
-  <div class="px-[108px] bg-[#fff]  shadow-lg mt-[100px] ">
-    <div class="w-full px-[18px] py-[44px] ">
+
+  <div class="shadow-sm mt-[100px]">
+    <div class="w-full  px-[100px] py-[44px] bg-[#fff] shadow-lg">
       <div class="flex justify-between">
         <div class="flex justify-between w-2/5 ">
           <div class="flex flex-col w-[50%]">
@@ -133,10 +135,12 @@
           <div class="mt-[42px] mx-[10px]">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <g clip-path="url(#clip0_1970_5135)">
-                <path d="M21 17H3" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M21 17H3" stroke="black" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
                 <path d="M6 10L3 7L6 4" stroke="black" stroke-width="1.5" stroke-linecap="round"
                   stroke-linejoin="round" />
-                <path d="M3 7H21" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M3 7H21" stroke="black" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
                 <path d="M18 20L21 17L18 14" stroke="black" stroke-width="1.5" stroke-linecap="round"
                   stroke-linejoin="round" />
               </g>
@@ -162,10 +166,12 @@
           <div class="mt-[42px] mx-[10px]">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <g clip-path="url(#clip0_1970_5135)">
-                <path d="M21 17H3" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M21 17H3" stroke="black" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
                 <path d="M6 10L3 7L6 4" stroke="black" stroke-width="1.5" stroke-linecap="round"
                   stroke-linejoin="round" />
-                <path d="M3 7H21" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M3 7H21" stroke="black" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
                 <path d="M18 20L21 17L18 14" stroke="black" stroke-width="1.5" stroke-linecap="round"
                   stroke-linejoin="round" />
               </g>
@@ -183,26 +189,139 @@
           </div>
         </div>
         <div class="flex flex-col w-1/5">
-          <label for="guest" class="text-[14px] font-semibold">Guest</label>
-          <input type="text" id="guest" placeholder="Choose guests"
-            class="border-[1px] border-[#D5D4DC] p-[12px] rounded-[8px] mt-[8px] outline-none w-full">
+          <span class="text-[14px] font-semibold">Guest</span>
+          <div class="relative">
+            <div id="selectGuest" class="flex justify-between items-center p-[12px] border-[1px] border-[#D4D5DC] rounded-[8px] mt-[8px] cursor-pointer">
+              <span id="guestText">Choose guest</span>
+              <img src="../static/assets/svgs/Arrows.svg" alt="">
+            </div>
+            <div id="listGuest" class="absolute left-0 top-[50px] w-full border-[1px] border-[#D5D4DC] rounded-[8px] bg-[#fff] flex px-[20px] py-[10px] justify-center invisible">
+              <div class="w-1/2 flex flex-col items-center">
+                <span>Adult</span>
+                <div class="shadow-md px-[14px] flex items-center">
+                    <button  id="adultDecrease" class="text-[30px] font-medium">-</button>
+                    <span id="adultCount" class="mx-[8px] font-semibold mt-[5px] text-[18px]">0</span>
+                    <button id="adultIncrease" class="text-[30px] ">+</button>
+                </div>
+              </div>
+              <div class="w-1/2 flex flex-col items-center">
+                <span>Child</span>
+                <div class="shadow-md px-[14px] flex items-center">
+                  <button  id="childDecrease" class="text-[30px] font-medium">-</button>
+                  <span id="childCount" class="mx-[8px] font-semibold mt-[5px] text-[18px]">0</span>
+                  <button id="childIncrease" class="text-[30px] ">+</button>
+              </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="flex justify-between items-end w-full mt-[28px]">
         <div class="flex flex-col w-1/5">
-          <label for="ratings" class="text-[14px] font-semibold">Ratings</label>
-          <input type="text" id="ratings" placeholder="Choose rating"
-            class="border-[1px] border-[#D5D4DC] p-[12px] rounded-[8px] mt-[8px] outline-none">
+          <span class="text-[14px] font-semibold">Ratings</span>
+          <div class="relative">
+            <div id="selectRatings"
+              class="flex justify-between items-center p-[12px] border-[1px] border-[#D5D4DC] rounded-[8px] mt-[8px] cursor-pointer">
+              <span id="ratingsText">Choose ratings</span>
+              <img src="../static/assets/svgs/Arrows.svg" alt="">
+            </div>
+            <ul id="listRatings"
+              class="absolute left-0 top-[50px] border-[1px] border-[#D5D4DC] w-full invisible bg-[#fff] rounded-[8px] py-[3px] h-[150px] overflow-auto">
+              <li class="optionsRatings flex px-[12px] py-[6px] cursor-pointer">
+                <span class="hidden">5</span>
+                <img src="../static/assets/svgs/Star.svg" alt="">
+                <img src="../static/assets/svgs/Star.svg" alt="" class="mx-[8px]">
+                <img src="../static/assets/svgs/Star.svg" alt="">
+                <img src="../static/assets/svgs/Star.svg" alt="" class="mx-[8px]">
+                <img src="../static/assets/svgs/Star.svg" alt="">
+              </li>
+              <li class="optionsRatings flex px-[12px] py-[6px] cursor-pointer">
+                <span class="hidden">4</span>
+                <img src="../static/assets/svgs/Star.svg" alt="">
+                <img src="../static/assets/svgs/Star.svg" alt="" class="mx-[8px]">
+                <img src="../static/assets/svgs/Star.svg" alt="">
+                <img src="../static/assets/svgs/Star.svg" alt="" class="ms-[8px]">
+              </li>
+              <li class="optionsRatings flex px-[12px] py-[6px] cursor-pointer">
+                <span class="hidden">3</span>
+                <img src="../static/assets/svgs/Star.svg" alt="">
+                <img src="../static/assets/svgs/Star.svg" alt="" class="mx-[8px]">
+                <img src="../static/assets/svgs/Star.svg" alt="">
+              </li>
+              <li class="optionsRatings flex px-[12px] py-[6px] cursor-pointer">
+                <span class="hidden">2</span>
+                <img src="../static/assets/svgs/Star.svg" alt="">
+                <img src="../static/assets/svgs/Star.svg" alt="" class="ms-[8px]">
+              </li>
+              <li class="optionsRatings flex px-[12px] py-[6px] cursor-pointer">
+                <span class="hidden">1</span>
+                <img src="../static/assets/svgs/Star.svg" alt="">
+              </li>
+            </ul>
+          </div>
         </div>
         <div class="flex flex-col w-1/5 mx-[10px]">
-          <label for="nutrition" class="text-[14px] font-semibold">Nutrition</label>
-          <input type="text" id="nutrition" placeholder="Choose nutrition"
-            class="border-[1px] border-[#D5D4DC] p-[12px] rounded-[8px] mt-[8px] outline-none">
+          <span class="text-[14px] font-semibold">Nutrition</span>
+          <div class="relative">
+            <div id="selectNutrition"
+              class="flex justify-between items-center p-[12px] border-[1px] border-[#D5D4DC] rounded-[8px] mt-[8px] cursor-pointer">
+              <span id="nutritionText">Choose nutrition</span>
+              <img src="../static/assets/svgs/Arrows.svg" alt="">
+            </div>
+            <ul id="listNutritions"
+              class="absolute left-0 top-[50px]  border-[1px] border-[#D5D4DC] w-full  bg-[#fff] rounded-[8px] py-[3px] h-[150px] overflow-auto invisible">
+              <li class="optionsNutritions px-[12px] py-[6px] cursor-pointer">All</li>
+              <li class="optionsNutritions px-[12px] py-[6px] cursor-pointer">Without food</li>
+              <li class="optionsNutritions px-[12px] py-[6px] cursor-pointer">Breakfast</li>
+              <li class="optionsNutritions px-[12px] py-[6px] cursor-pointer">All inclusive</li>
+              <li class="optionsNutritions px-[12px] py-[6px] cursor-pointer">Full board</li>
+              <li class="optionsNutritions px-[12px] py-[6px] cursor-pointer">Half board</li>
+            </ul>
+          </div>
         </div>
         <div class="flex flex-col w-1/5">
-          <label for="night" class="text-[14px] font-semibold">Night</label>
-          <input type="text" id="night" placeholder="Choose night"
-            class="border-[1px] border-[#D5D4DC] p-[12px] rounded-[8px] mt-[8px] outline-none">
+          <span class="text-[14px] font-semibold">Night</span>
+          <div class="relative">
+            <div id="selectNight"
+              class="flex justify-between items-center p-[12px] border-[1px] border-[#D5D4DC] rounded-[8px] cursor-pointer mt-[8px]">
+              <span id="nightText">Choose night</span>
+              <img src="../static/assets/svgs/Arrows.svg" alt="">
+            </div>
+            <ul id="listNight"
+              class="absolute left-0 top-[50px] border-[1px] border-[#D5D4DC] w-full  bg-[#fff] rounded-[8px] py-[3px] h-[150px] overflow-auto invisible">
+              <li class="optionsNights py-[6px] px-[12px] cursor-pointer">I night</li>
+              <li class="optionsNights py-[6px] px-[12px] cursor-pointer">II night</li>
+              <li class="optionsNights py-[6px] px-[12px] cursor-pointer">III night</li>
+              <li class="optionsNights py-[6px] px-[12px] cursor-pointer">IV night</li>
+              <li class="optionsNights py-[6px] px-[12px] cursor-pointer">V night</li>
+              <li class="optionsNights py-[6px] px-[12px] cursor-pointer">VI night</li>
+              <li class="optionsNights py-[6px] px-[12px] cursor-pointer">VII night</li>
+              <li class="optionsNights py-[6px] px-[12px] cursor-pointer">VIII night</li>
+              <li class="optionsNights py-[6px] px-[12px] cursor-pointer">IX night</li>
+              <li class="optionsNights py-[6px] px-[12px] cursor-pointer">X night</li>
+              <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XI night</li>
+              <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XII night</li>
+              <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XIII night</li>
+              <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XIV night</li>
+              <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XV night</li>
+              <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XVI night</li>
+              <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XVII night</li>
+              <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XVIII night</li>
+              <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XIX night</li>
+              <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XX night</li>
+              <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XXI night</li>
+              <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XXII night</li>
+              <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XXIII night</li>
+              <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XXIV night</li>
+              <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XXV night</li>
+              <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XXVI night</li>
+              <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XXVII night</li>
+              <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XXVIII night</li>
+              <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XXIX night</li>
+              <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XXX night</li>
+              <li class="optionsNights py-[6px] px-[12px] cursor-pointer">XXI night</li>
+            </ul>
+          </div>
         </div>
         <div class="w-2/5 flex justify-end">
           <a href="./searchResult.html" class="flex p-[12px] border-[2px] border-[#2141B7] rounded-[8px]">
@@ -245,7 +364,7 @@
           </div>
           <div class="p-[16px]">
             <div class="flex">
-              <input type="checkbox" id="fiveStars" class="cursor-pointer">
+              <input type="checkbox" id="fiveStars" class="cursor-pointer w-[24px] h-[24px]">
               <label for="fiveStars" class="grid grid-cols-5 gap-x-[8px] ms-[8px] cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="26" viewBox="0 0 28 26" fill="none">
                   <path
@@ -275,7 +394,7 @@
               </label>
             </div>
             <div class="flex my-[18px]">
-              <input type="checkbox" id="fourStars" class="cursor-pointer">
+              <input type="checkbox" id="fourStars" class="cursor-pointer w-[24px] h-[24px]">
               <label for="fourStars" class="grid grid-cols-5 gap-x-[8px] ms-[8px] cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="26" viewBox="0 0 28 26" fill="none">
                   <path
@@ -300,7 +419,7 @@
               </label>
             </div>
             <div class="flex">
-              <input type="checkbox" id="threeStars" class="cursor-pointer">
+              <input type="checkbox" id="threeStars" class="cursor-pointer w-[24px] h-[24px]">
               <label for="threeStars" class="grid grid-cols-5 gap-x-[8px] ms-[8px] cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="26" viewBox="0 0 28 26" fill="none">
                   <path
@@ -320,7 +439,7 @@
               </label>
             </div>
             <div class="flex my-[18px]">
-              <input type="checkbox" id="twoStars" class="cursor-pointer">
+              <input type="checkbox" id="twoStars" class="cursor-pointer w-[24px] h-[24px]">
               <label for="twoStars" class="grid grid-cols-5 gap-x-[8px] ms-[8px] cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="26" viewBox="0 0 28 26" fill="none">
                   <path
@@ -335,7 +454,7 @@
               </label>
             </div>
             <div class="flex">
-              <input type="checkbox" id="oneStar" class="cursor-pointer">
+              <input type="checkbox" id="oneStar" class="cursor-pointer w-[24px] h-[24px]">
               <label for="oneStar" class="flex ms-[8px] cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="26" viewBox="0 0 28 26" fill="none">
                   <path
@@ -352,42 +471,42 @@
           </div>
           <div class="p-[16px]">
             <div class="flex justify-between">
-              <div>
-                <input type="checkbox" id="0-200" class="cursor-pointer">
+              <div class="flex items-center">
+                <input type="checkbox" id="0-200" class="cursor-pointer w-[24px] h-[24px]">
                 <label for="0-200" class="ms-[8px] cursor-pointer">$0 - $200</label>
               </div>
               <span class="text-[#5C5C5C]">200</span>
             </div>
             <div class="flex justify-between my-[18px]">
-              <div>
-                <input type="checkbox" id="200-500" class="cursor-pointer">
+              <div class="flex items-center">
+                <input type="checkbox" id="200-500" class="cursor-pointer w-[24px] h-[24px]">
                 <label for="200-500" class="ms-[8px] cursor-pointer">$200 - $500</label>
               </div>
               <span class="text-[#5C5C5C]">100</span>
             </div>
             <div class="flex justify-between">
-              <div>
-                <input type="checkbox" id="500-1000" class="cursor-pointer">
+              <div class="flex items-center">
+                <input type="checkbox" id="500-1000" class="cursor-pointer w-[24px] h-[24px]">
                 <label for="500-1000" class="ms-[8px] cursor-pointer">$500 - $1000</label>
               </div>
               <span class="text-[#5C5C5C]">15</span>
             </div>
             <div class="flex justify-between my-[18px]">
-              <div>
-                <input type="checkbox" id="1000-2000" class="cursor-pointer">
+              <div class="flex items-center">
+                <input type="checkbox" id="1000-2000" class="cursor-pointer w-[24px] h-[24px]">
                 <label for="1000-2000" class="ms-[8px] cursor-pointer">$1000 - $2000</label>
               </div>
               <span class="text-[#5C5C5C]">12</span>
             </div>
             <div class="flex justify-between">
-              <div>
-                <input type="checkbox" id="2000-5000" class="cursor-pointer">
+              <div class="flex items-center">
+                <input type="checkbox" id="2000-5000" class="cursor-pointer w-[24px] h-[24px]">
                 <label for="2000-5000" class="ms-[8px] cursor-pointer">$2000 - $5000</label>
               </div>
               <span class="text-[#5C5C5C]">230</span>
             </div>
           </div>
-          <div class="flex justify-between p-[16px] border-t-[1px] border-[#F1F1F1  ]">
+          <div class="flex justify-between p-[16px] border-t-[1px] border-[#F1F1F1]">
             <span class="text-[#787878] text-[14px]">Set your budget</span>
             <div><input type="checkbox"></div>
           </div>
@@ -399,43 +518,43 @@
           </div>
           <div class="p-[16px]">
             <div class="flex justify-between">
-              <div>
-                <input type="checkbox" id="all" class="cursor-pointer">
+              <div class="flex items-center">
+                <input type="checkbox" id="all" class="cursor-pointer w-[24px] h-[24px]">
                 <label for="all" class="ms-[8px] cursor-pointer">All</label>
               </div>
               <span class="text-[#5C5C5C]">200</span>
             </div>
             <div class="flex justify-between my-[18px]">
-              <div>
-                <input type="checkbox" id="withoutFood" class="cursor-pointer">
+              <div class="flex items-center">
+                <input type="checkbox" id="withoutFood" class="cursor-pointer w-[24px] h-[24px]">
                 <label for="withoutFood" class="ms-[8px] cursor-pointer">Without Food</label>
               </div>
               <span class="text-[#5C5C5C]">100</span>
             </div>
             <div class="flex justify-between">
-              <div>
-                <input type="checkbox" id="breakfast" class="cursor-pointer">
+              <div class="flex items-center">
+                <input type="checkbox" id="breakfast" class="cursor-pointer w-[24px] h-[24px]">
                 <label for="breakfast" class="ms-[8px] cursor-pointer">Breakfast</label>
               </div>
               <span class="text-[#5C5C5C]">15</span>
             </div>
             <div class="flex justify-between my-[18px]">
-              <div>
-                <input type="checkbox" id="allInclusive" class="cursor-pointer">
+              <div class="flex items-center">
+                <input type="checkbox" id="allInclusive" class="cursor-pointer w-[24px] h-[24px]">
                 <label for="allInclusive" class="ms-[8px] cursor-pointer">All inclusive</label>
               </div>
               <span class="text-[#5C5C5C]">12</span>
             </div>
             <div class="flex justify-between">
-              <div>
-                <input type="checkbox" id="fullBoard" class="cursor-pointer">
+              <div class="flex items-center">
+                <input type="checkbox" id="fullBoard" class="cursor-pointer w-[24px] h-[24px]">
                 <label for="fullBoard" class="ms-[8px] cursor-pointer">Full board</label>
               </div>
               <span class="text-[#5C5C5C]">230</span>
             </div>
             <div class="flex justify-between mt-[18px]">
-              <div>
-                <input type="checkbox" id="halfBoard" class="cursor-pointer">
+              <div class="flex items-center">
+                <input type="checkbox" id="halfBoard" class="cursor-pointer w-[24px] h-[24px]">
                 <label for="halfBoard" class="ms-[8px] cursor-pointer">Half board</label>
               </div>
               <span class="text-[#5C5C5C]">230</span>
@@ -449,22 +568,22 @@
           </div>
           <div class="p-[16px]">
             <div class="flex justify-between">
-              <div>
-                <input type="checkbox" id="swimmingPool" class="cursor-pointer">
+              <div class="flex items-center">
+                <input type="checkbox" id="swimmingPool" class="cursor-pointer w-[24px] h-[24px]">
                 <label for="swimmingPool" class="ms-[8px] cursor-pointer">Swimming Pool</label>
               </div>
               <span class="text-[#5C5C5C]">200</span>
             </div>
             <div class="flex justify-between my-[18px]">
-              <div>
-                <input type="checkbox" id="aquapark" class="cursor-pointer">
+              <div class="flex items-center ">
+                <input type="checkbox" id="aquapark" class="cursor-pointer w-[24px] h-[24px]">
                 <label for="aquapark" class="ms-[8px] cursor-pointer">Aquapark</label>
               </div>
               <span class="text-[#5C5C5C]">100</span>
             </div>
             <div class="flex justify-between">
-              <div>
-                <input type="checkbox" id="bath-sauna" class="cursor-pointer">
+              <div class="flex items-center">
+                <input type="checkbox" id="bath-sauna" class="cursor-pointer w-[24px] h-[24px]">
                 <label for="bath-sauna" class="ms-[8px] cursor-pointer">Bath/Sauna</label>
               </div>
               <span class="text-[#5C5C5C]">15</span>
@@ -478,29 +597,29 @@
           </div>
           <div class="p-[16px]">
             <div class="flex justify-between">
-              <div>
-                <input type="checkbox" id="airConditioner" class="cursor-pointer">
+              <div class="flex items-center">
+                <input type="checkbox" id="airConditioner" class="cursor-pointer w-[24px] h-[24px]">
                 <label for="airConditioner" class="ms-[8px] cursor-pointer">All Conditioner</label>
               </div>
               <span class="text-[#5C5C5C]">200</span>
             </div>
             <div class="flex justify-between my-[18px]">
-              <div>
-                <input type="checkbox" id="parking" class="cursor-pointer">
+              <div class="flex items-center">
+                <input type="checkbox" id="parking" class="cursor-pointer w-[24px] h-[24px]">
                 <label for="parking" class="ms-[8px] cursor-pointer">Parking</label>
               </div>
               <span class="text-[#5C5C5C]">100</span>
             </div>
             <div class="flex justify-between">
-              <div>
-                <input type="checkbox" id="bar" class="cursor-pointer">
+              <div class="flex items-center">
+                <input type="checkbox" id="bar" class="cursor-pointer w-[24px] h-[24px]">
                 <label for="bar" class="ms-[8px] cursor-pointer">Bar</label>
               </div>
               <span class="text-[#5C5C5C]">15</span>
             </div>
             <div class="flex justify-between mt-[18px]">
-              <div>
-                <input type="checkbox" id="massage" class="cursor-pointer">
+              <div class="flex items-center">
+                <input type="checkbox" id="massage" class="cursor-pointer w-[24px] h-[24px]">
                 <label for="massage" class="ms-[8px] cursor-pointer">Massage</label>
               </div>
               <span class="text-[#5C5C5C]">15</span>
@@ -1332,7 +1451,7 @@
   </div>
 
   <!-- Search Info -->
-
+  <script src="../static/assets/JS/searchResult.js"></script>
 </body>
 
 </html>
