@@ -365,8 +365,7 @@ def fstravel_parser(data):
     otel = str(data.get('hotel'))
     unk = str(data.get('unkmown'))
     star = str(data.get('star'))
-    print(star)
-    
+    city = str(data.get('city'))
     start_date = datetime.strptime(data.get('start_date'), '%Y-%m-%d').strftime('%Y%m%d')
     end_date = datetime.strptime(data.get('end_date'), '%Y-%m-%d').strftime('%Y%m%d')
     nights_start = str(data.get('nights_start'))
@@ -385,50 +384,115 @@ def fstravel_parser(data):
         child=0
     print(child)
     if yer == 'Yes':
-        if tour:
-            #### Duz isleyir el vurma
-            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG=20240601&NIGHTS_FROM=7&CHECKIN_END=20240601&NIGHTS_TILL=14&ADULT=2&CURRENCY=2&COSTMIN=2995&CHILD=0&COSTMAX=10000&TOWNS_ANY=1&STARS_ANY=1&HOTELS_ANY=1&MEALS_ANY=1&ROOMS_ANY=1&FREIGHT=1&FILTER=1&PRICEPAGE=1&DOLOAD=1'    
-            if child:
-                 print("XYZ")
-                 link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG=20240601&NIGHTS_FROM=7&CHECKIN_END=20240601&NIGHTS_TILL=14&ADULT=2&Child={child}&CURRENCY=2&COSTMIN=2995&CHILD=0&COSTMAX=10000&TOWNS_ANY=1&STARS_ANY=1&HOTELS_ANY=1&MEALS_ANY=1&ROOMS_ANY=1&FREIGHT=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1' 
-        elif qida :
-            if otel:
-                print('y')
-                #Duz isleyir el vurma                 
-                link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&HOTELS={otel}&MEALS={qida}&ROOMS_ANY=1&FREIGHT=1&FILTER=1&PRICEPAGE=1&DOLOAD=1'
-            else:     
-                print('a')
-                #Duz isleyir el vurma 
-                link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&TOWNS=NaN%2C355153%2C693795%2C789189%2C388026%2C761669%2C386680%2C804429%2C351898%2C304681%2C304684%2C699188%2C704110%2C704101%2C666475%2C695955%2C398914%2C351935%2C439148%2C704079%2C304696%2C666478%2C351913%2C684831%2C400116%2C304702%2C400493%2C304705%2C304708%2C304711%2C304714%2C786956%2C372240%2C761676%2C778930%2C304717%2C786944%2C761679&STARS_ANY=1&HOTELS_ANY=1&MEALS={qida}&FREIGHT=1&FILTER=1&PRICEPAGE=1&DOLOAD=1'
-        else:
-            if otel:
-                if unk == '1' :
-                    #Duz isleyir el vurma
-                    link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&STARS_ANY=1&HOTELS={otel}&MEALS_ANY=1&ROOMS_ANY=1&FREIGHT=1&FILTER=1&PRICEPAGE=1&DOLOAD=1'
-            elif star :
-                 print("XXXXX")
-                 link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&STARS={star}&HOTELS_ANY=1&MEALS_ANY=1&ROOMS_ANY=1&FREIGHT=1&PRICEPAGE=1&DOLOAD=1'
+        if tour :
+            if cost_min and cost_max:
+                if child:
+                    if qida:
+                        if otel:
+                            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&TOWNS_ANY=1&STARS_ANY=1&HOTELS={otel}&MEALS={qida}&ROOMS_ANY=1&FREIGHT=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1'
+                        elif star:
+                             link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&TOWNS_ANY=1&STARS={star}&HOTELS={otel}&MEALS={qida}&ROOMS_ANY=1&FREIGHT=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1'
+                        else:
+                            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&TOWNS_ANY=1&STARS_ANY=1&HOTELS_ANY=1&MEALS={qida}&ROOMS_ANY=1&FREIGHT=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1'
+                    else:
+                        if otel:
+                            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&TOWNS_ANY=1&STARS_ANY=1&HOTELS={otel}&MEALS_ANY=1&ROOMS_ANY=1&FREIGHT=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1'
+                        else:
+                            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&TOWNS_ANY=1&STARS_ANY=1&HOTELS_ANY=1&MEALS_ANY=1&ROOMS_ANY=1&FREIGHT=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1' 
+                else:
+                    if qida:
+                        if otel:
+                            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD=0&COSTMAX={cost_max}&TOWNS_ANY=1&STARS_ANY=1&HOTELS={otel}&MEALS={qida}&ROOMS_ANY=1&FREIGHT=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1'
+                        elif star:
+                             link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD=0&COSTMAX={cost_max}&TOWNS_ANY=1&STARS={star}&HOTELS={otel}&MEALS={qida}&ROOMS_ANY=1&FREIGHT=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1'
+                        else:
+                            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD=0&COSTMAX={cost_max}&TOWNS_ANY=1&STARS_ANY=1&HOTELS_ANY=1&MEALS={qida}&ROOMS_ANY=1&FREIGHT=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1'
+                    else:
+                        if otel:
+                            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD=0&COSTMAX={cost_max}&TOWNS_ANY=1&STARS_ANY=1&HOTELS={otel}&MEALS_ANY=1&ROOMS_ANY=1&FREIGHT=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1'
+                        else:
+                            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD=0&COSTMAX={cost_max}&TOWNS_ANY=1&STARS_ANY=1&HOTELS_ANY=1&MEALS_ANY=1&ROOMS_ANY=1&FREIGHT=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1' 
             else:
                 if child:
-                    print("dsss")
-                    link=f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&TOWNS_ANY=1&STARS_ANY=1&HOTELS_ANY=1&MEALS_ANY=1&FREIGHT=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1'                
-                else:
-                #Duz isleyir el vurma
-                    link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&TOWNS_ANY=1&STARS_ANY=1&HOTELS_ANY=1&MEALS_ANY=1&FREIGHT=1&FILTER=1&PRICEPAGE=1&DOLOAD=1'                
-
-    else:
-        if tour:
-            #Duz isleyir el vurma
-            print("Emil")
-            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&TOWNS_ANY=1&STARS_ANY=1&HOTELS_ANY=1&MEALS_ANY=1&ROOMS_ANY=1&&FILTER=1&PRICEPAGE=1&DOLOAD=1'
-        elif qida :
-            #Duz isleyir el vurma
-            print("Aytac")
-            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&TOWNS=NaN%2C355153%2C693795%2C789189%2C388026%2C761669%2C386680%2C804429%2C351898%2C304681%2C304684%2C699188%2C704110%2C704101%2C666475%2C695955%2C398914%2C351935%2C439148%2C704079%2C304696%2C666478%2C351913%2C684831%2C400116%2C304702%2C400493%2C304705%2C304708%2C304711%2C304714%2C786956%2C372240%2C761676%2C778930%2C304717%2C786944%2C761679&STARS_ANY=1&HOTELS_ANY=1&MEALS={qida}&FILTER=1&PRICEPAGE=1&DOLOAD=1'
+                    if qida:
+                        if otel:
+                            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&CHILD={child}&TOWNS_ANY=1&STARS_ANY=1&HOTELS={otel}&MEALS={qida}&ROOMS_ANY=1&FREIGHT=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1'
+                        elif star:
+                             link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&CHILD={child}&TOWNS_ANY=1&STARS={star}&HOTELS={otel}&MEALS={qida}&ROOMS_ANY=1&FREIGHT=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1'
+                        else:
+                            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&CHILD={child}&TOWNS_ANY=1&STARS_ANY=1&HOTELS_ANY=1&MEALS={qida}&ROOMS_ANY=1&FREIGHT=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1'
+                    else:
+                        if otel:
+                            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&CHILD={child}&TOWNS_ANY=1&STARS_ANY=1&HOTELS={otel}&MEALS_ANY=1&ROOMS_ANY=1&FREIGHT=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1'
+                        else:
+                            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&CHILD={child}&TOWNS_ANY=1&STARS_ANY=1&HOTELS_ANY=1&MEALS_ANY=1&ROOMS_ANY=1&FREIGHT=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1' 
+        
         else:
-            #Duz isleyir el vurma
-            print('k')
-            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&TOWNS=NaN%2C355153%2C693795%2C789189%2C388026%2C761669%2C386680%2C804429%2C351898%2C304681%2C304684%2C699188%2C704110%2C704101%2C666475%2C695955%2C398914%2C351935%2C439148%2C704079%2C304696%2C666478%2C351913%2C684831%2C400116%2C304702%2C400493%2C304705%2C304708%2C304711%2C304714%2C786956%2C372240%2C761676%2C778930%2C304717%2C786944%2C761679&STARS_ANY=1&HOTELS_ANY=1&MEALS_ANY=1&FILTER=1&PRICEPAGE=1&DOLOAD=1'
+             if cost_min and cost_max:
+                if child:
+                    if qida:
+                        if otel:
+                            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&TOWNS_ANY=1&STARS_ANY=1&HOTELS={otel}&MEALS={qida}&ROOMS_ANY=1&FREIGHT=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1'
+                        elif star:
+                             print("Aytac teacher")
+                             link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&TOWNS_ANY=1&STARS={star}&HOTELS={otel}&MEALS={qida}&ROOMS_ANY=1&FREIGHT=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1'
+                        else:
+                            print("Aytac")
+                            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&TOWNS={city}&STARS_ANY=1&HOTELS_ANY=1&MEALS={qida}&ROOMS_ANY=1&FREIGHT=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1'
+                    else:
+                        if otel:
+                            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&TOWNS_ANY=1&STARS_ANY=1&HOTELS={otel}&MEALS_ANY=1&ROOMS_ANY=1&FREIGHT=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1'
+                        else:
+                            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&TOWNS_ANY=1&STARS_ANY=1&HOTELS_ANY=1&MEALS_ANY=1&ROOMS_ANY=1&FREIGHT=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1' 
+                else:
+                    if qida:
+                        if otel:
+                            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD=0&COSTMAX={cost_max}&TOWNS_ANY=1&STARS_ANY=1&HOTELS={otel}&MEALS={qida}&ROOMS_ANY=1&FREIGHT=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1'
+                        elif star:
+                             link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD=0&COSTMAX={cost_max}&TOWNS_ANY=1&STARS={star}&HOTELS={otel}&MEALS={qida}&ROOMS_ANY=1&FREIGHT=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1'
+                        else:
+                            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD=0&COSTMAX={cost_max}&TOWNS_ANY=1&STARS_ANY=1&HOTELS_ANY=1&MEALS={qida}&ROOMS_ANY=1&FREIGHT=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1'
+                    else:
+                        if otel:
+                            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD=0&COSTMAX={cost_max}&TOWNS_ANY=1&STARS_ANY=1&HOTELS={otel}&MEALS_ANY=1&ROOMS_ANY=1&FREIGHT=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1'
+                        else:
+                            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD=0&COSTMAX={cost_max}&TOWNS_ANY=1&STARS_ANY=1&HOTELS_ANY=1&MEALS_ANY=1&ROOMS_ANY=1&FREIGHT=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1' 
+            
+    else: 
+         if tour :
+            if cost_min and cost_max:
+                if child:
+                    if qida:
+                        if otel:
+                            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&TOWNS_ANY=1&STARS_ANY=1&HOTELS={otel}&MEALS={qida}&ROOMS_ANY=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1'
+                        elif star:
+                             link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&TOWNS_ANY=1&STARS={star}&HOTELS={otel}&MEALS={qida}&ROOMS_ANY=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1'
+                        else:
+                            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&TOWNS_ANY=1&STARS_ANY=1&HOTELS_ANY=1&MEALS={qida}&ROOMS_ANY=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1'
+                    else:
+                        if otel:
+                            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&TOWNS_ANY=1&STARS_ANY=1&HOTELS={otel}&MEALS_ANY=1&ROOMS_ANY=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1'
+                        else:
+                            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD={child}&COSTMAX={cost_max}&TOWNS_ANY=1&STARS_ANY=1&HOTELS_ANY=1&MEALS_ANY=1&ROOMS_ANY=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1' 
+                else:
+                    if qida:
+                        if otel:
+                            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD=0&COSTMAX={cost_max}&TOWNS_ANY=1&STARS_ANY=1&HOTELS={otel}&MEALS={qida}&ROOMS_ANY=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1'
+                        elif star:
+                             link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD=0&COSTMAX={cost_max}&TOWNS_ANY=1&STARS={star}&HOTELS={otel}&MEALS={qida}&ROOMS_ANY=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1'
+                        else:
+                            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD=0&COSTMAX={cost_max}&TOWNS_ANY=1&STARS_ANY=1&HOTELS_ANY=1&MEALS={qida}&ROOMS_ANY=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1'
+                    else:
+                        if otel:
+                            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD=0&COSTMAX={cost_max}&TOWNS_ANY=1&STARS_ANY=1&HOTELS={otel}&MEALS_ANY=1&ROOMS_ANY=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1'
+                        else:
+                            link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&COSTMIN={cost_min}&CHILD=0&COSTMAX={cost_max}&TOWNS_ANY=1&STARS_ANY=1&HOTELS_ANY=1&MEALS_ANY=1&ROOMS_ANY=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1' 
+            else:
+                if child:
+                    if qida:
+                        link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&CHILD={child}&TOWNS_ANY=1&STARS_ANY=1&HOTELS_ANY=1&MEALS={qida}&ROOMS_ANY=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1'
+                    else:   
+                        link =f'https://b2b.fstravel.asia/search_tour?TOWNFROMINC=433614&STATEINC=18803&TOURINC={tour}&CHECKIN_BEG={start_date}&NIGHTS_FROM={nights_start}&CHECKIN_END={end_date}&NIGHTS_TILL={nights_end}&ADULT={adult}&CURRENCY=2&CHILD={child}&TOWNS_ANY=1&STARS_ANY=1&HOTELS_ANY=1&MEALS_ANY=1&ROOMS_ANY=1&FILTER=1&AGES={child1}&PRICEPAGE=1&DOLOAD=1'
 
     a = []
     print(link)

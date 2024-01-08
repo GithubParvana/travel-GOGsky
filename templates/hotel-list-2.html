@@ -90,10 +90,10 @@
                   {% csrf_token %}
                      <h5 class="text-18 fw-500 mb-10">Please enter...</h5>
                     <div class="single-field relative d-flex items-center py-10">
-                      <select class="pl-50 border-light text-dark-1 h-50 rounded-8" name="choice" id="filter-input">
+                      <select class="pl-50 border-light text-dark-1 h-50 rounded-8" name="city" id="filter-input">
                         <option value="">Select location</option>
-                        <option value="x">Antalya</option>
-                        <option value="y">Bodrum</option>
+                        <option value="NaN%2C19415%2C785016%2C355837%2C310992%2C310997%2C310998">Antalya</option>
+                        <option value="NaN%2C297519%2C297562%2C297567%2C304602%2C297572%2C297577%2C304583%2C304588%2C777269%2C304593">Alanya</option>
                         
                     </select>        
                     </div>
@@ -183,6 +183,7 @@
                       <select class="pl-50 border-light text-dark-1 h-50 rounded-8" name="star" id="filter-input" placeholder="Teyyarede yer" >
                         <option value="10005"> 5</option>
                         <option value="10004">4</option>
+                        <option value="">----</option>
                     </select> 
                     </div>
                     <button type="Submit" style="border: 1px solid aqua;width:38%;background-color:aqua">Search</button>
